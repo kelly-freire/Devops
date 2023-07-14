@@ -10,9 +10,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -30,15 +30,6 @@ jobs:
     - name: Build with Maven
       run: mvn clean install
     
-    - uses: mr-smithers-excellent/docker-build-push@v6
-      name: Push Docker image
-      with:
-       image: rapha1010/store-service-java-image
-       tags: latest
-       registry: docker.io
-       dockerfile: Dockerfile
-       username: ${{ secrets.DOCKER_USERNAME }}
-       password: ${{ secrets.DOCKER_PASSWORD }}
        
   deploy:
     needs: build
@@ -48,7 +39,7 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.12.13 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "store-service" #Must be unique in Heroku
-          heroku_email: "rapha.tavares1010@gmail.com" 
+          heroku_app_name: "trabalho-devops" #Must be unique in Heroku
+          heroku_email: "tuppence_rj@yahoo.com.br" 
        
        
